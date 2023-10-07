@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: thistle;
+      }
+
+      #taskInput {
+        width: 200px;
+        height: 40px;
+        border: none;
+        outline: none;
+        caret-color: rgb(255, 81, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        padding-left: 15px;
+        letter-spacing: 0.8px;
+        color: rgb(19, 19, 19);
+        font-size: 13.4px;
+      }
+
+      .InputContainer {
+        width: 225px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          to bottom,
+          rgb(227, 213, 255),
+          rgb(255, 231, 231)
+        );
+        border-radius: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+        margin-right: 29px;
+      }
+
+      .flex {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-flex;
+      }
+
+      #app {
+        max-width: 600px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 60px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: rgba(181, 181, 181, 0.397);
+        border: 2px solid #7310dc9c;
+        border-radius: 30px;
+      }
+
+      /* CSS */
+      #addTask {
+        padding: 0.6em 2em;
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation *;
+      }
+
+      #addTask:before {
+        content: "";
+        background: linear-gradient(
+          45deg,
+          #ff0000,
+          #ff7300,
+          #fffb00,
+          #48ff00,
+          #00ffd5,
+          #002bff,
+          #7a00ff,
+          #ff00c8,
+          #ff0000
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+      }
+
+      @keyframes glowing-button-85 {
+        0% {
+          background-position: 0 0;
+        }
+        50% {
+          background-position: 400% 0;
+        }
+        100% {
+          background-position: 0 0;
+        }
+      }
+
+      #addTask:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #222;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+      }
+
+      ul {
+        list-style-type: none;
+        text-align:left;
+        margin-left: 90px;
+      }
+      
+      li {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>La mia To-Do List</h1>
+      <div class="flex">
+        <div class="InputContainer">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="Aggiungi una nuova attività"
+          />
+        </div>
+        <button id="addTask">Aggiungi</button>
+      </div>
+      <ul id="taskList">
+        <!-- Gli elementi della lista saranno qui -->
+      </ul>
+    </div>
+    <script>
+      function newList() {
+        let inpt = document.getElementById("taskInput");
+        let inptNew = inpt.value;
+        if (inptNew.trim !== '') {
+          let li = document.createElement("li");
+          li.textContent = inptNew
+          let ul = document.getElementById('taskList')
+          ul.appendChild(li)
+          inpt.value = ''
+        }
+      }
+
+      let btn = document.getElementById('addTask')
+      btn.addEventListener('click', newList)
+
+
+    </script>
+  </body>
+</html>
